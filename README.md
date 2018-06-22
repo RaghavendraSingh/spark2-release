@@ -26,6 +26,8 @@ To build Spark and its example programs, run:
     mvn -s ./settings.xml -Pyarn -Dhadoop.version=2.7.1.2.4.3.0-227 -DskipTests clean install
     Package:-
     mvn -s ./settings.xml -Pyarn -Dhadoop.version=2.7.1.2.4.3.0-227 -DskipTests package
+    Create Distribution:-
+    ./dev/make-distribution.sh --name custom-spark --tgz -Pyarn -Dhadoop.version=2.7.1.2.4.3.0-227
 
 (You do not need to do this if you downloaded a pre-built package.)
 

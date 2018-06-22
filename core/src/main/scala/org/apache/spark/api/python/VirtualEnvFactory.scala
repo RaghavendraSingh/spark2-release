@@ -129,6 +129,14 @@ class VirtualEnvFactory(pythonExec: String, conf: SparkConf, isDriver: Boolean)
     execCommand(createEnvCommand)
 
     virtualPythonExec = virtualEnvName + "/bin/python"
+    /*
+    * if the environment is native, update pip to latest version
+    * as older pip versions dont have the --cache-dir option
+    * */
+    if (virtualEnvType == "native") {
+      execCommand(List(virtualPythonExec, "-m", "pip",
+        "install", "pip", "--upgrade"))
+    }
     if (virtualEnvType == "native" && pysparkRequirements.isDefined) {
       // requirement file for native is not mandatory, run this only when requirement file
       // is specified.
